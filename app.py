@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -13,13 +15,8 @@ app.secret_key = 'clave_secreta_futball_stars'
 # --- CONFIGURACIÓN DE LA BASE DE DATOS POSTGRESQL ---
 def get_db_connection():
     try:
-        connection = psycopg2.connect(
-            host='127.0.0.1',
-            user='postgres',          # Usuario por defecto de Postgres
-            password='123456789', # <--- CAMBIA ESTO por la que pusiste en la instalación
-            database='futball_db',    # El nombre de la BD que creamos en pgAdmin
-            port=5433                 # El puerto que elegiste en la instalación
-        )
+        DATABASE_URL = os.environ.get("DATABASE_URL")
+        connection = psycopg2.connect(DATABASE_URL)
         return connection
     except Exception as err:
         print(f"Error de conexión a PostgreSQL: {err}")
