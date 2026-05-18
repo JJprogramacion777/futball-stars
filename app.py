@@ -16,7 +16,10 @@ app.secret_key = 'clave_secreta_futball_stars'
 def get_db_connection():
     try:
         DATABASE_URL = os.environ.get("DATABASE_URL")
-        connection = psycopg2.connect(DATABASE_URL)
+        connection = psycopg2.connect(
+            DATABASE_URL,
+            options='-c search_path=public'   # 👈 fuerza el esquema correcto
+        )
         return connection
     except Exception as err:
         print(f"Error de conexión a PostgreSQL: {err}")
