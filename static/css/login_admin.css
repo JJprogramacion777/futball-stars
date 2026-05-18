@@ -1,0 +1,187 @@
+/* --- ESTILOS PROFESIONALES LOGIN ADMINISTRADOR --- */
+:root {
+    --primary-color: #00bcd4; /* Turquesa */
+    --accent-orange: #ff9800; /* Naranja (usado para el botón) */
+    --accent-hover: #f57c00;
+    --bg-dark: #121212; /* Negro profundo */
+    --text-white: #ffffff;
+    --text-muted: #aaaaaa;
+    --text-dark: #333333;
+    --font-main: 'Poppins', sans-serif;
+    --transition: all 0.3s ease-in-out;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body.admin-login-page {
+    font-family: var(--font-main);
+    /* Degradado de fondo turquesa oscuro para simular el look de la referencia */
+    background: radial-gradient(circle at top right, rgba(0, 188, 212, 0.1) 0%, #121212 70%);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Enlace para volver */
+.back-link {
+    position: fixed; top: 30px; left: 30px;
+    color: var(--text-muted);
+    transition: var(--transition);
+    z-index: 10;
+}
+.back-link:hover { color: var(--text-white); transform: translateX(-3px); }
+
+/* CONTENEDOR PRINCIPAL HORIZONTAL (Split Screen) */
+.main-container {
+    display: flex;
+    width: 1000px;
+    height: 650px;
+    background: #fff;
+    border-radius: 40px; /* Bordes muy curvos como en referencia */
+    box-shadow: 0 30px 100px rgba(0,0,0,0.7);
+    overflow: hidden; /* Mantiene las formas abstractas dentro */
+}
+
+/* COLUMNA IZQUIERDA: Visual y Formas Abstractas */
+.visual-side {
+    flex: 1; /* Toma el 50% del ancho */
+    background-color: var(--bg-dark); /* Fondo oscuro de marca */
+    color: #fff;
+    position: relative; /* Clave para posicionar las formas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+/* Formas Abstractas Sutiles (Reemplazando el morado por Turquesa oscuro) */
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(20px); /* Desenfoque sutil */
+    opacity: 0.2; /* Muy traslúcido */
+}
+
+.shape-1 {
+    width: 300px; height: 300px;
+    background-color: var(--primary-color);
+    top: -50px; left: -100px;
+}
+
+.shape-2 {
+    width: 250px; height: 250px;
+    background-color: var(--primary-color);
+    bottom: -80px; right: -50px;
+    opacity: 0.15;
+}
+
+/* Contenido de marca dentro del lado visual */
+.brand-content {
+    position: relative; /* Sobre las formas */
+    z-index: 2;
+    text-align: center;
+}
+
+.logo-img-admin {
+    height: 100px;
+    width: auto;
+    margin-bottom: 25px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+.brand-content h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 5px;}
+.brand-content p { color: var(--text-muted); font-size: 1rem; font-weight: 400;}
+.brand-content p.desc { font-size: 0.85rem; font-weight: 300; margin-top: 15px; opacity: 0.7;}
+
+
+/* COLUMNA DERECHA: Formulario (Limpio y Blanco como en referencia) */
+.form-side {
+    flex: 1; /* Toma el otro 50% */
+    background-color: #fff;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--text-dark);
+    position: relative;
+}
+
+/* Icono de admin sutil arriba */
+.admin-icon-wrapper {
+    position: absolute;
+    top: 40px; right: 40px;
+    color: #eee; /* Muy sutil */
+}
+.admin-icon-wrapper svg { height: 24px; width: auto; }
+
+.form-side h2 { 
+    font-size: 2.5rem; /* Más grande para PC */
+    font-weight: 700; 
+    color: var(--bg-dark); /* Texto casi negro */
+    margin-bottom: 10px;
+}
+
+.form-side p.subtitle {
+    color: #888;
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 50px;
+}
+
+/* ENTRADAS DE TEXTO REFINADAS */
+.input-group { margin-bottom: 20px; }
+.input-group input {
+    width: 100%;
+    padding: 18px 25px;
+    border: none;
+    border-bottom: 2px solid #eee; /* Solo línea inferior profesional */
+    background: #fcfcfc;
+    border-radius: 15px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    color: var(--text-dark);
+    transition: var(--transition);
+}
+
+.input-group input:focus {
+    border-bottom-color: var(--primary-color);
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.05);
+    outline: none;
+}
+
+/* BOTÓN PRINCIPAL (NARANJA para acciones de administrador) */
+.btn-main.admin-btn {
+    width: 100%;
+    padding: 18px;
+    background-color: var(--accent-orange);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 5px 25px rgba(255, 152, 0, 0.4);
+    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-main.admin-btn:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255, 152, 0, 0.5);
+}
+
+
+/* --- AJUSTES RESPONSIVOS (Para que se vea bien en tablets) --- */
+@media (max-width: 1024px) {
+    .main-container { width: 90%; height: auto; flex-direction: column-reverse; border-radius: 30px; }
+    .visual-side { height: 250px; }
+    .shape-1 { width: 200px; height: 200px; }
+    .shape-2 { width: 150px; height: 150px; }
+    .form-side { padding: 40px; }
+}

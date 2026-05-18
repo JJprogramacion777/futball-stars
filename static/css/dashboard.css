@@ -1,0 +1,243 @@
+/* --- ESTILOS PROFESIONALES DASHBOARD --- */
+:root {
+    --primary-color: #00bcd4; /* Turquesa vibrante */
+    --primary-hover: #0097a7;
+    --accent-orange: #ff9800; /* Naranja para advertencias/canchas */
+    --accent-hover: #f57c00;
+    --bg-dark: #121212; /* Negro profundo de fondo */
+    --bg-dark-sutil: #1a1a1a; /* Negro un poco más claro para tarjetas oscuras */
+    --text-white: #ffffff;
+    --text-muted: #aaaaaa;
+    --font-main: 'Poppins', sans-serif;
+    --transition: all 0.3s ease-in-out;
+    --sidebar-width: 260px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body.dashboard-page {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    overflow: hidden; /* Mantiene la barra lateral fija */
+}
+
+/* CONTENEDOR PRINCIPAL QUE ABRAZA TODO */
+.dashboard-wrapper {
+    display: flex; /* Sidebar a la izquierda, Contenido a la derecha */
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --- MENÚ LATERAL (Sidebar) --- */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--bg-dark-sutil); /* Negro más claro que el fondo */
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.logo-img-sidebar { height: 40px; width: auto; }
+.sidebar-header h2 { font-size: 1.4rem; font-weight: 700; color: var(--primary-color); }
+
+.sidebar-nav ul { list-style: none; }
+.sidebar-nav ul li { margin-bottom: 8px; }
+
+.sidebar-nav ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 12px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: var(--transition);
+}
+
+.sidebar-nav ul li.active a {
+    background-color: rgba(0, 188, 212, 0.1);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.sidebar-nav ul li a:not(.active):hover {
+    color: var(--text-white);
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.sidebar-footer { margin-top: auto; padding-top: 40px; }
+.btn-logout {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 12px;
+    border-radius: 12px;
+    transition: var(--transition);
+    background-color: rgba(255, 255, 255, 0.03);
+}
+.btn-logout:hover { color: var(--text-white); background-color: rgba(255, 255, 255, 0.08); }
+
+
+/* --- ÁREA DE CONTENIDO PRINCIPAL --- */
+.main-content {
+    flex: 1; /* Toma el resto del ancho */
+    padding: 50px;
+    overflow-y: auto; /* Permite scroll vertical */
+}
+
+/* Cabecera del Contenido (Hola Administrador) */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.welcome-text h1 { font-size: 2.8rem; font-weight: 700; line-height: 1.1; margin-bottom: 10px;}
+.welcome-text p { color: var(--text-muted); font-size: 1rem; }
+
+.header-actions { display: flex; align-items: center; gap: 30px; }
+.notification-bell { color: var(--text-muted); position: relative; font-size: 1.5rem; text-decoration: none;}
+.notification-bell .badge {
+    position: absolute; top: -5px; right: -5px;
+    background-color: var(--accent-orange);
+    color: white; font-size: 0.75rem; font-weight: 600;
+    padding: 3px 6px; border-radius: 50%;
+}
+
+.user-profile { display: flex; align-items: center; gap: 12px; }
+.avatar-img { height: 45px; width: 45px; border-radius: 50%; border: 2px solid var(--primary-color); }
+.user-name { font-weight: 600; font-size: 1rem;}
+
+
+/* --- GRILLA DE CONTENIDO (ESTILO TARJETAS) --- */
+.content-grid {
+    display: grid;
+    /* Grilla profesional de 4 columnas */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* Clases de utilidad para la grilla (como en la referencia) */
+.col-span-2 { grid-column: span 2; }
+.row-span-2 { grid-row: span 2; }
+
+
+/* --- TARJETAS DE ESTADÍSTICAS (STAT CARDS) --- */
+.stat-card {
+    background-color: rgba(255, 255, 255, 0.03); /* Fondo sutil */
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    gap: 20px;
+    transition: var(--transition);
+}
+.stat-card:hover { transform: translateY(-3px); }
+
+/* Colores de acento para tarjetas específicas */
+.stat-card.primary-card { background-color: var(--primary-color); color: white; }
+.stat-card.primary-card h3 { color: rgba(255, 255, 255, 0.7); }
+.stat-card.primary-card .stat-value { color: white; }
+.stat-card.primary-card .trend.positive { color: white; font-weight: 600; text-transform: uppercase;}
+
+.stat-card.orange-card { background-color: rgba(255, 152, 0, 0.1); border-color: rgba(255, 152, 0, 0.2); }
+.stat-card.orange-card .card-icon { background-color: var(--accent-orange); color: white; }
+.stat-card.orange-card h3 { color: var(--accent-orange); }
+
+.stat-card.dark-card { background-color: var(--bg-dark-sutil); border-color: rgba(255, 152, 0, 0.2); }
+.stat-card.dark-card h3 { color: var(--accent-orange); }
+.stat-card.dark-card .desc { color: var(--text-muted); font-size: 0.9rem;}
+
+.stat-card.sutil-card .card-icon { color: var(--primary-color); background-color: rgba(0, 188, 212, 0.1); }
+.stat-card.sutil-card .desc { color: var(--text-muted); font-size: 0.9rem;}
+
+
+/* Elementos comunes dentro de las tarjetas */
+.card-icon {
+    font-size: 2rem;
+    width: 60px; height: 60px;
+    border-radius: 15px;
+    display: flex; align-items: center; justify-content: center;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.card-info h3 { font-size: 1rem; color: var(--text-muted); font-weight: 400; margin-bottom: 5px; }
+.stat-value { font-size: 2rem; font-weight: 700; color: var(--text-white); margin-bottom: 3px;}
+.trend { font-size: 0.9rem; color: var(--text-muted); font-weight: 300; }
+.trend.positive { color: #8bc34a; } /* Verde sutil para positivo */
+
+
+/* --- TARJETAS DE GRÁFICOS Y CONTENIDO ADICIONAL --- */
+.graph-card, .calendar-card, .resumen-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 25px;
+}
+.card-header h3 { font-size: 1.2rem; font-weight: 600; color: var(--text-white); }
+.card-header .date { color: var(--primary-color); font-weight: 600;}
+
+/* Simulación Gráfico Semana (placeholder) */
+.graph-placeholder {
+    height: 300px;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px dashed rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    text-align: center; color: var(--text-muted);
+}
+
+
+/* --- LISTAS DE RESUMEN (Pagos y Notificaciones) --- */
+.pagos-list, .notificaciones-list { list-style: none; }
+.pagos-list li, .notificaciones-list li {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+.pagos-list li span, .notificaciones-list li { color: var(--text-white); font-weight: 500; margin-right: 5px;}
+.pagos-list li strong { color: var(--text-white); font-weight: 600; margin-left: auto; }
+.pagos-list li span.date { color: #555; font-size: 0.8rem; margin-left: 10px; font-weight: 300;}
+
+.view-all { color: var(--primary-color); text-decoration: none; font-size: 0.9rem; }
+.view-all:hover { text-decoration: underline; }
+
+
+/* --- CALENDARIO PROFESIONAL HOY (Línea de tiempo) --- */
+.calendar-placeholder {
+    height: 300px;
+}
+.timeline {
+    height: 100%;
+    display: flex; flex-direction: column; gap: 15px;
+}
+.hour-slot { display: flex; align-items: center; gap: 15px; }
+.hour-slot span { color: #555; font-size: 0.8rem; font-weight: 300; width: 40px; }
+
+.event-block {
+    flex: 1; padding: 10px 15px; border-radius: 10px; font-size: 0.85rem;
+}
+.event-block.available { color: #555; background-color: rgba(255, 255, 255, 0.03); }
+.event-block.booked { font-weight: 500;}
+.event-block.booked.orange { background-color: rgba(255, 152, 0, 0.1); color: var(--accent-orange); }
+.event-block.booked.turquoise { background-color: rgba(0, 188, 212, 0.1); color: var(--primary-color); }

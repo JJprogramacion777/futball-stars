@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Notificaciones</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_admin/notificaciones.css') }}">
+</head>
+<body class="dashboard-page">
+
+    <div class="dashboard-wrapper">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='img/logo_futball.png') }}" alt="Logo" class="logo-img-sidebar">
+                <h2>Futball Stars</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="{{ url_for('dashboard') }}">📊 Dashboard</a></li>
+                    <li><a href="{{ url_for('dashboard', seccion='reservas') }}">⚽ Canchas</a></li>
+                    <li><a href="{{ url_for('dashboard', seccion='clientes') }}">👥 Clientes</a></li>
+                    <li><a href="#">💰 Pagos</a></li>
+                    <li class="active"><a href="{{ url_for('notificaciones') }}">🔔 Notificaciones</a></li>
+                    <li><a href="#">⚙️ Configuración</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="{{ url_for('logout') }}" class="btn-logout">Cerrar Sesión</a>
+            </div>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="welcome-text">
+                    <h1>Centro de Notificaciones</h1>
+                    <p>Gestiona los mensajes recibidos desde el formulario de contacto.</p>
+                </div>
+                <div class="header-actions">
+                    <a href="#" class="notification-bell">🔔 <span class="badge">{{ mensajes|length }}</span></a>
+                    <div class="user-profile">
+                        <img src="{{ url_for('static', filename='img/avatar.png') }}" alt="Avatar" class="avatar-img">
+                        <span class="user-name">Juan José</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-grid">
+                <!-- Mensajes recibidos -->
+                <div class="graph-card col-span-3">
+                    <div class="card-header">
+                        <h3>📩 Mensajes Recibidos</h3>
+                    </div>
+                    <div class="notifications-list">
+                        {% for mensaje in mensajes %}
+                        <div class="notification-card {{ 'unread' if not mensaje.leido }}">
+                            <div class="card-status"></div>
+                            <div class="card-body">
+                                <div class="card-header">
+                                    <h3>{{ mensaje.nombre }} <span>({{ mensaje.correo }})</span></h3>
+                                    <span class="date">{{ mensaje.fecha_envio.strftime('%d %b, %I:%M %p') }}</span>
+                                </div>
+                                <p class="message-text">{{ mensaje.mensaje }}</p>
+                                <div class="card-actions">
+                                    {% if not mensaje.leido %}
+                                    <button class="btn-action mark-read">Marcar como leído</button>
+                                    {% endif %}
+                                    <form action="{{ url_for('eliminar_mensaje', id=mensaje.id) }}" method="POST" style="display:inline;">
+                                        <button type="submit" class="btn-action delete" onclick="confirmarEliminacion(event, '{{ mensaje.id }}')">Eliminar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Eliminaciones recientes -->
+                <div class="graph-card col-span-3">
+                    <div class="card-header">
+                        <h3>🗑️ Eliminaciones recientes</h3>
+                    </div>
+                    <ul class="eliminaciones-list">
+                        {% for e in eliminaciones %}
+                        <li>
+                            <span class="date">{{ e.fecha_eliminacion.strftime('%d %b, %I:%M %p') }}</span> -
+                            Mensaje ID: {{ e.mensaje_id }} eliminado por {{ e.nombre_admin }}
+                        </li>
+                        {% else %}
+                        <li>No hay registros de eliminaciones recientes.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de confirmación -->
+    <div id="modalConfirmacion" class="modal">
+        <div class="modal-content">
+            <h3>¿Eliminar mensaje?</h3>
+            <p>Esta acción no se puede deshacer. ¿Deseas continuar?</p>
+            <div class="modal-actions">
+                <button id="btnCancelar" class="btn-secondary">Cancelar</button>
+                <button id="btnConfirmar" class="btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script>
+    let mensajeIdEliminar = null;
+
+    function confirmarEliminacion(event, id) {
+        event.preventDefault();
+        mensajeIdEliminar = id;
+        document.getElementById('modalConfirmacion').style.display = 'flex';
+    }
+
+    document.getElementById('btnCancelar').addEventListener('click', () => {
+        document.getElementById('modalConfirmacion').style.display = 'none';
+        mensajeIdEliminar = null;
+    });
+
+    document.getElementById('btnConfirmar').addEventListener('click', () => {
+        if (mensajeIdEliminar) {
+            const form = document.querySelector(`form[action*='${mensajeIdEliminar}']`);
+            form.submit();
+        }
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagos - Dashboard Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/css_admin/admin_pagos.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>💳 Pagos realizados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Reserva</th>
+                    <th>Usuario</th>
+                    <th>Correo</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Monto</th>
+                    <th>Método</th>
+                    <th>Estado</th>
+                    <th>Fecha Pago</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pago in pagos %}
+                <tr>
+                    <td>{{ pago[0] }}</td>
+                    <td>{{ pago[1] }}</td>
+                    <td>{{ pago[2] }}</td>
+                    <td>{{ pago[3] }}</td>
+                    <td>{{ pago[4] }}</td>
+                    <td>${{ pago[5] }}</td>
+                    <td>{{ pago[6] }}</td>
+                    <td>{{ pago[7] }}</td>
+                    <td>{{ pago[8] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

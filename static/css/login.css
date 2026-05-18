@@ -1,0 +1,160 @@
+/* --- ESTILOS PROFESIONALES HORIZONTALES LOGIN --- */
+:root {
+    --primary-color: #00bcd4; /* Turquesa vibrante */
+    --primary-hover: #0097a7;
+    --bg-dark: #121212; /* Negro profundo */
+    --text-white: #ffffff;
+    --text-muted: #aaaaaa;
+    --text-dark: #333333;
+    --font-main: 'Poppins', sans-serif;
+    --transition: all 0.3s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body.login-page {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden; /* Evita scroll si la imagen es grande */
+}
+
+/* Enlace para volver (Flotante arriba a la izquierda) */
+.back-link {
+    position: fixed; top: 30px; left: 30px;
+    color: var(--text-muted);
+    transition: var(--transition);
+    z-index: 10; /* Asegura que esté sobre el contenido */
+}
+.back-link:hover { color: var(--text-white); transform: translateX(-3px); }
+
+/* CONTENEDOR PRINCIPAL HORIZONTAL (Split Screen) */
+.main-container {
+    display: flex; /* LA CLAVE DEL DISEÑO HORIZONTAL */
+    width: 1000px; /* Ancho amplio para PC */
+    height: 650px; /* Altura cómoda */
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+    overflow: hidden; /* Mantiene las curvas dentro */
+}
+
+/* COLUMNA IZQUIERDA: Formulario (Limpia y Blanca) */
+.form-body {
+    flex: 1; /* Toma el 50% del ancho */
+    padding: 60px 80px; /* Márgenes amplios y profesionales */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    color: var(--text-dark);
+}
+
+.form-body h2 { 
+    font-size: 2.2rem; 
+    margin-bottom: 10px; 
+    font-weight: 700; 
+    color: var(--primary-color); 
+    text-align: left; /* Alineación a la izquierda */
+}
+
+.form-body p.subtitle {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+/* ENTRADAS DE TEXTO REFINADAS */
+.input-group { margin-bottom: 20px; }
+.input-group input {
+    width: 100%;
+    padding: 18px 25px;
+    border: none;
+    border-bottom: 2px solid #eee;
+    background: #fcfcfc;
+    border-radius: 15px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    color: var(--text-dark);
+    transition: var(--transition);
+}
+
+.input-group input:focus {
+    border-bottom-color: var(--primary-color);
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.05);
+    outline: none;
+}
+
+.forgot-link {
+    color: #888;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 40px;
+    text-align: right;
+    transition: var(--transition);
+}
+.forgot-link:hover { color: var(--primary-color); }
+
+/* BOTÓN PRINCIPAL */
+.btn-main {
+    width: 100%;
+    padding: 18px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 5px 20px rgba(0, 188, 212, 0.3);
+    margin-bottom: 25px;
+}
+.btn-main:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 188, 212, 0.4);
+}
+
+/* ENLACE PARA CAMBIAR DE FORMULARIO */
+.switch-form { color: #666; font-size: 0.95rem; text-align: center; }
+.switch-form a { color: var(--primary-color); text-decoration: none; font-weight: 600; }
+.switch-form a:hover { text-decoration: underline; }
+
+
+/* COLUMNA DERECHA: Imagen/Marca (Oscura y Visual) */
+.form-header {
+    flex: 1; /* Toma el otro 50% */
+    /* Degradado de marca elegante */
+    background: 
+        linear-gradient(135deg, rgba(0, 188, 212, 0.5) 0%, rgba(18, 18, 18, 0.9) 100%),
+        #121212;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    color: #fff;
+    text-align: center;
+}
+
+.logo-img { 
+    height: 100px; /* Más grande para PC */
+    width: auto; 
+    margin-bottom: 20px; 
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+.form-header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; }
+.form-header p { font-weight: 300; opacity: 0.8; margin-top: 10px; }
+
+
+/* --- AJUSTES RESPONSIVOS (Para que no se rompa en tablets) --- */
+@media (max-width: 1024px) {
+    .main-container { width: 90%; height: auto; flex-direction: column-reverse; }
+    .form-header { height: 250px; border-radius: 0 0 30px 30px; }
+    .form-body { padding: 40px; border-radius: 30px 30px 0 0; margin-top: -30px; }
+}

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Futball Stars</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    
+</head>
+<body class="dashboard-page">
+
+    <div class="dashboard-wrapper">
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='img/logo_futball.png') }}" alt="Logo" class="logo-img-sidebar">
+                <h2>Futball Stars</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="{{ 'active' if not seccion_activa }}">
+                        <a href="{{ url_for('dashboard') }}">📊 Dashboard</a>
+                    </li>
+                    <li class="{{ 'active' if seccion_activa == 'reservas' }}">
+                        <a href="{{ url_for('dashboard', seccion='reservas') }}">⚽ Canchas</a>
+                    </li>
+                    <li class="{{ 'active' if seccion_activa == 'clientes' }}">
+                        <a href="{{ url_for('dashboard', seccion='clientes') }}">👥 Clientes</a>
+                    </li>
+                    <li class="{{ 'active' if seccion_activa == 'pagos' }}">
+                        <a href="{{ url_for('dashboard', seccion='pagos') }}">💰 Pagos</a>
+                    </li>
+                    <li class="{{ 'active' if seccion_activa == 'notificaciones' }}">
+                        <a href="{{ url_for('notificaciones') }}">🔔 Notificaciones</a>
+                    </li>
+                    <li><a href="#">⚙️ Configuración</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="{{ url_for('logout') }}" class="btn-logout">Cerrar Sesión</a>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main-content">
+            
+            <header class="content-header">
+                <div class="welcome-text">
+                    <h1>Hola,<br>Administrador</h1>
+                    <p>Panel de Gestión de <strong>Futball Stars</strong></p>
+                </div>
+                <div class="header-actions">
+                    <a href="#" class="notification-bell">🔔 <span class="badge">{{ notificaciones|length }}</span></a>
+                    <div class="user-profile">
+                        <img src="{{ url_for('static', filename='img/avatar.png') }}" alt="Avatar" class="avatar-img">
+                        <span class="user-name">Juan José</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-grid">
+
+                {% if seccion_activa == 'clientes' %}
+                <!-- CLIENTES -->
+                <div class="graph-card col-span-3">
+                    <div class="card-header"><h3>👥 Clientes Registrados</h3></div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre Completo</th>
+                                <th>Correo</th>
+                                <th>Fecha de Registro</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for c in clientes %}
+                            <tr>
+                                <td>{{ c.nombre_completo }}</td>
+                                <td>{{ c.correo }}</td>
+                                <td>{{ c.fecha_registro }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {% elif seccion_activa == 'reservas' %}
+                <!-- RESERVAS -->
+                <div class="graph-card col-span-3">
+                    <div class="card-header"><h3>📅 Gestión de Reservas</h3></div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Cancha</th>
+                                <th>Equipo</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for r in reservas %}
+                            <tr>
+                                <td><strong>{{ r.cancha_id }}</strong></td>
+                                <td>{{ r.usuario_nombre }}</td>
+                                <td>{{ r.fecha }}</td>
+                                <td>{{ r.hora }}</td>
+                                <td>
+                                    <a href="{{ url_for('editar_reserva', id=r.id) }}" class="btn-action btn-edit">Editar</a>
+                                    <a href="{{ url_for('eliminar_reserva', id=r.id) }}" class="btn-action btn-delete" onclick="return confirm('¿Eliminar reserva?')">Borrar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {% elif seccion_activa == 'pagos' %}
+              <div class="graph-card col-span-3">
+  <div class="bloque-pagos">
+    <h3>💳 Pagos realizados</h3>
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Método</th>
+          <th>Monto</th>
+          <th>Estado</th>
+          <th>Fecha Pago</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pago in pagos %}
+        <tr>
+          <td>{{ pago.metodo_pago }}</td>
+          <td>{{ pago.monto }}</td>
+          <td class="estado-{{ pago.estado|lower }}">{{ pago.estado }}</td>
+          <td>{{ pago.fecha_pago }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+                {% else %}
+                <!-- DASHBOARD PRINCIPAL -->
+                <div class="stat-card orange-card">
+                    <div class="card-icon">⚽</div>
+                    <div class="card-info">
+                        <h3>Canchas Ocupadas</h3>
+                        <p class="stat-value">{{ reservas|length }}</p>
+                        <p class="trend">Total Reservas</p>
+                    </div>
+                </div>
+
+                <div class="stat-card dark-card">
+                    <div class="card-icon">👥</div>
+                    <div class="card-info">
+                        <h3>Total Clientes</h3>
+                        <p class="stat-value">{{ clientes|length }}</p>
+                        <p class="desc">Registrados en la BD</p>
+                    </div>
+                </div>
+
+                <div class="stat-card sutil-card">
+                    <div class="card-icon">📅</div>
+                    <div class="card-info">
+                        <h3>Próximo Partido</h3>
+                        <p class="stat-value">4:00 PM</p>
+                        <p class="desc">Cancha: Pro</p>
+                    </div>
+                </div>
+
+                <div class="graph-card col-span-2">
+                    <div class="card-header"><h3>Ocupación Semanal</h3></div>
+                    <div class="graph-placeholder"><p>Gráfico de Barras Activo</p></div>
+                </div>
+
+                                <div class="resumen-card">
+                    <div class="card-header"><h3>Notificaciones</h3></div>
+                    <ul class="notificaciones-list">
+                        {% for n in notificaciones %}
+                        <li>🔔 Nueva: {{ n.usuario_nombre }} - {{ n.cancha_id }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+            </div>
+        </main>
+    </div>
+
+    <!-- SweetAlert para mensajes flash -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <script>
+          Swal.fire({
+            icon: 'success',
+            title: '¡Reserva confirmada!',
+            text: '{{ messages[0] }}',
+            confirmButtonColor: '#00b894',
+            background: '#1e1e1e',
+            color: '#fff'
+          });
+        </script>
+      {% endif %}
+    {% endwith %}
+
+    <style>
+        /* === Estilo uniforme para todas las tablas === */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.admin-table th {
+    background: #00bcd4;
+    color: #000;
+    padding: 15px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.admin-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+.admin-table tr:hover {
+    background: rgba(255,255,255,0.05);
+    transition: background-color 0.3s ease;
+}
+
+/* === Botones de acción === */
+.btn-action {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-right: 5px;
+    font-weight: 600;
+}
+
+.btn-edit { background: #ffc107; color: #000; }
+.btn-delete { background: #dc3545; color: #fff; }
+
+/* === Bloque visual para la sección de pagos === */
+.bloque-pagos {
+    background-color: #181818;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+    margin-top: 30px;
+}
+
+.bloque-pagos h3 {
+    color: #00bcd4;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* === Estados de pago === */
+.estado-completado {
+    color: #4caf50; /* Verde */
+    font-weight: 600;
+}
+
+.estado-pendiente {
+    color: #ff9800; /* Naranja */
+    font-weight: 600;
+}
+
+.estado-fallido {
+    color: #f44336; /* Rojo */
+    font-weight: 600;
+}
+
+
+
+    </style>
+
+</body>
+</html>

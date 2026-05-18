@@ -1,0 +1,115 @@
+body {
+    background-color: #121212;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor-pago {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    width: 420px;
+    margin: 100px auto;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    text-align: center;
+}
+
+h2 {
+    color: #00b894;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+    color: #ccc;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2d2d2d;
+    color: #fff;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    outline: 2px solid #00b894;
+}
+
+button {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px;
+    background-color: #00b894;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #019874;
+}
+
+footer {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #777;
+}
+
+.contenedor-pago {
+    background-color: #181818;
+    border-radius: 12px;
+    width: 420px;
+    margin: 100px auto;
+    padding: 30px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.contenedor-pago:hover {
+    transform: scale(1.02);
+}
+
+h2 {
+    color: #00b894;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+select, input {
+    background-color: #2b2b2b;
+    border: 1px solid #00b894;
+    color: #fff;
+    border-radius: 6px;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px;
+    background-color: #00b894;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #019874;
+}

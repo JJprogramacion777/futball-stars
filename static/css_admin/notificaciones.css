@@ -1,0 +1,223 @@
+/* ================================
+   🎨 Variables globales (modo oscuro)
+   ================================ */
+:root {
+    --bg-main: #121212;
+    --bg-card: #1e1e1e;
+    --accent-green: #00d47e;
+    --accent-orange: #ff9100;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --border: #333333;
+}
+
+/* ================================
+   📌 Contenido principal
+   ================================ */
+.main-content {
+    background-color: var(--bg-main);
+    padding: 30px;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.section-header h1 {
+    color: var(--text-primary);
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+/* ================================
+   🔔 Lista de notificaciones
+   ================================ */
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 900px;
+}
+
+/* ================================
+   🗂️ Tarjeta de notificación
+   ================================ */
+.notification-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.notification-card:hover {
+    transform: translateX(5px);
+    border-color: #444;
+}
+
+/* Indicador de estado (verde si no está leído) */
+.card-status {
+    width: 6px;
+    background-color: transparent;
+}
+
+.notification-card.unread .card-status {
+    background-color: var(--accent-green);
+}
+
+.notification-card.unread {
+    background-color: #1a221f; /* Tinte verde sutil */
+}
+
+/* ================================
+   📄 Contenido dentro de la tarjeta
+   ================================ */
+.card-body {
+    padding: 20px;
+    width: 100%;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-primary);
+}
+
+.card-header h3 span {
+    font-weight: normal;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.date {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.message-text {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* ================================
+   🎛️ Botones de acción
+   ================================ */
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-action {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.mark-read:hover {
+    background-color: var(--accent-green);
+    color: #000;
+    border-color: var(--accent-green);
+}
+
+.delete:hover {
+    background-color: #ff4444;
+    color: #fff;
+    border-color: #ff4444;
+}
+
+/* ================================
+   ⚠️ Modal de confirmación
+   ================================ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-secondary {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: #666;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background-color: #b02a37;
+}
+
+/* ================================
+   🗑️ Lista de eliminaciones recientes
+   ================================ */
+.eliminaciones-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.eliminaciones-list li {
+    padding: 8px;
+    border-bottom: 1px solid #333;
+}
+
+.eliminaciones-list .date {
+    font-weight: bold;
+    color: #ffc107;
+}

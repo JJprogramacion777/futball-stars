@@ -1,0 +1,49 @@
+<!-- templates/formulario_pagos.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pago de Reserva - Futball Stars</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/formulario_pagos.css') }}">
+</head>
+<body>
+    <div class="contenedor-pago">
+        <h2>💳 Completa tu pago</h2>
+        <form action="{{ url_for('procesar_pago') }}" method="POST">
+            <label for="metodo_pago">Método de pago:</label>
+            <select name="metodo_pago" required>
+                <option value="Nequi">Nequi</option>
+                <option value="Transferencia">Transferencia Bancaria</option>
+                <option value="Efectivo">Efectivo</option>
+            </select>
+
+            <label for="monto">Monto a pagar:</label>
+            <input type="number" name="monto" step="0.01" placeholder="Ej: 50000" required>
+
+            <button type="submit">Pagar y confirmar reserva</button>
+        </form>
+    </div>
+
+    <!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+      Swal.fire({
+        icon: 'success',
+        title: '¡Reserva confirmada!',
+        text: '{{ messages[0] }}',
+        confirmButtonColor: '#00b894',
+        background: '#1e1e1e',
+        color: '#fff',
+        footer: 'Gracias por usar Futball Stars ⚽'
+      });
+    </script>
+  {% endif %}
+{% endwith %}
+
+
+
+
+</body>
+</html>

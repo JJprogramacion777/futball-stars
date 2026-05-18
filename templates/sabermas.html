@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reglamento y FAQ - Futball Stars</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sabermas.css') }}">
+</head>
+<body class="page-sabermas">
+
+    <a href="/" class="home-icon-link" title="Volver al Inicio">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    </a>
+
+    <header class="section-header">
+        <div class="header-content">
+            <span class="tagline">Reglas de Juego</span>
+            <h1>Todo lo que necesitas saber.</h1>
+            <p>Lee atentamente las normas de agendamiento para disfrutar de la mejor experiencia.</p>
+        </div>
+    </header>
+
+    <main class="info-grid">
+        
+        <div class="info-card">
+            <div class="card-icon blue-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            </div>
+            <h3>Agenda con tiempo</h3>
+            <p>Para asegurar tu cupo, aparta con un mínimo de <strong>24 horas de anticipación</strong>.</p>
+        </div>
+
+        <div class="info-card warning-card">
+            <div class="card-icon orange-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+            </div>
+            <h3>Penalizaciones</h3>
+            <p>Si cancelas con menos de 12 horas de antelación, tu cuenta será <strong>suspendida por 2 días</strong>.</p>
+        </div>
+
+        <div class="info-card">
+            <div class="card-icon blue-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            </div>
+            <h3>Fair Play</h3>
+            <p>El turno termina <strong>5 minutos antes</strong> de la hora para permitir el cambio de equipos.</p>
+        </div>
+
+    </main>
+
+    <section class="cta-section">
+        <h2>¿Listo para el partido?</h2>
+        <p>Regístrate ahora y reserva tu cancha en segundos.</p>
+        <a href="/login" class="btn-main large-btn">¡Comienza ahora!</a>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            
+            <div class="footer-column brand-col">
+                <div class="logo-brand">
+                    <img src="{{ url_for('static', filename='img/logo_futball.png') }}" alt="Logo" class="brand-img-footer">
+                    <span class="brand-text">Futball Stars</span>
+                </div>
+                <p>La plataforma definitiva para apasionados del fútbol. Reserva, juega y domina la cancha.</p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Explorar</h4>
+                <ul>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#sedes">Nuestras Sedes</a></li>
+                    <li><a href="#precios">Tarifas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Términos de Uso</a></li>
+                    <li><a href="#">Privacidad</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Futball Stars. Diseñado con pasión por Juan José.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

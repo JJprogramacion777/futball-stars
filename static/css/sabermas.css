@@ -1,0 +1,263 @@
+/* --- ESTILOS ESPECÍFICOS PARA SABER MÁS (Refinados) --- */
+
+:root {
+    --primary-color: #00bcd4; /* Turquesa vibrante */
+    --accent-orange: #ff9800; /* Naranja para advertencias */
+    --bg-dark: #121212; /* Negro profundo */
+    --text-white: #ffffff;
+    --text-muted: #b0b0b0;
+    --transition: all 0.3s ease-in-out;
+}
+
+.page-sabermas {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+}
+
+/* --- ICONO DE CASA (Flotante) --- */
+.home-icon-link {
+    position: fixed;
+    top: 30px;
+    left: 40px;
+    color: var(--text-muted);
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.home-icon-link svg {
+    height: 28px;
+    width: auto;
+}
+
+.home-icon-link:hover {
+    color: var(--text-white);
+    transform: scale(1.1);
+}
+
+/* --- SECCIÓN CABECERA --- */
+.section-header {
+    height: 60vh; /* Altura generosa para el "Hero" */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Degradado sutil inspirado en la referencia */
+    background: radial-gradient(circle at top right, rgba(0, 188, 212, 0.1) 0%, transparent 60%);
+    padding: 0 40px;
+}
+
+.tagline {
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.section-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+}
+
+/* --- CONTENEDOR DE TARJETAS (ESTILO REFERENCIA) --- */
+.info-grid {
+    max-width: 1200px;
+    margin: -100px auto 100px; /* Sube las tarjetas sobre el degradado */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    padding: 0 40px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.03); /* Fondo oscuro muy traslúcido */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 50px; /* Espaciado amplio como en la referencia */
+    border-radius: 30px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 50px rgba(0, 188, 212, 0.15);
+}
+
+/* Estilo para la tarjeta de advertencia */
+.info-card.warning-card {
+    border-color: rgba(255, 152, 0, 0.3);
+}
+.info-card.warning-card:hover {
+    border-color: var(--accent-orange);
+    box-shadow: 0 20px 50px rgba(255, 152, 0, 0.15);
+}
+
+/* Iconos de las Tarjetas (SVG) */
+.card-icon {
+    height: 60px;
+    width: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.card-icon svg {
+    height: 60px;
+    width: 30px;
+}
+
+/* Colores de Iconos */
+.blue-icon {
+    background-color: rgba(0, 188, 212, 0.1);
+    color: var(--primary-color);
+}
+
+.orange-icon {
+    background-color: rgba(255, 152, 0, 0.1);
+    color: var(--accent-orange);
+}
+
+.info-card h3 {
+    color: var(--text-white);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.info-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.info-card strong {
+    color: var(--text-white); /* Destacar más los datos importantes */
+}
+
+/* --- SECCIÓN LLAMADO A LA ACCIÓN (CTA) --- */
+.cta-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 100px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.cta-section p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+/* Botón grande */
+.large-btn {
+    padding: 20px 50px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.main-footer {
+    background-color: #080808; /* Un negro un poco más profundo que el fondo */
+    padding: 80px 50px 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 100px;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 100px;
+    padding-bottom: 50px;
+}
+
+.brand-col p {
+    color: var(--text-muted);
+    margin-top: 20px;
+    font-size: 0.95rem;
+    max-width: 300px;
+}
+
+.brand-img-footer {
+    height: 45px; /* Un poco más pequeño que el de la nav */
+    width: auto;
+}
+
+.footer-column h4 {
+    color: var(--text-white);
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
+    padding-left: 5px; /* Efecto sutil de movimiento */
+}
+
+.footer-bottom {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    color: #444;
+    font-size: 0.85rem;
+}
+
+/* Responsivo para celulares */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    .brand-col p {
+        margin: 20px auto;
+    }
+}

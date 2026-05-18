@@ -1,0 +1,417 @@
+/* --- VARIABLES DE MARCA Y CONFIGURACIÓN --- */
+:root {
+    --primary-color: #00bcd4;    /* Turquesa vibrante para acciones */
+    --primary-hover: #0097a7;
+    --accent-orange: #ff9800;    /* Naranja para botones de reserva */
+    --bg-dark: #121212;          /* Negro profundo para elegancia */
+    --bg-glass: rgba(255, 255, 255, 0.08); /* Cristal traslúcido */
+    --text-white: #ffffff;
+    --text-muted: #b0b0b0;
+    --font-main: 'Poppins', sans-serif;
+    --transition: all 0.3s ease;
+}
+
+/* --- RESET GENERAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- BARRA DE NAVEGACIÓN (NAVBAR) --- */
+.navbar {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1300px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.logo-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.brand-img {
+    height: 120px;
+    width: auto;
+}
+
+.brand-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.nav-links a:not(.btn-nav) {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.btn-nav {
+    background-color: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text-white);
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-nav:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.4);
+}
+
+/* --- SECCIÓN PRINCIPAL (HERO) --- */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* Degradado oscuro para que el texto resalte sobre el fondo */
+    background: radial-gradient(circle at 20% 50%, rgba(0, 188, 212, 0.15) 0%, transparent 50%);
+}
+
+.hero-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+}
+
+.hero-text {
+    flex: 1.2;
+}
+
+.tagline {
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.hero-desc {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 45px;
+    max-width: 550px;
+    font-weight: 300;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 20px;
+}
+
+/* --- BOTONES --- */
+.btn-main, .btn-secondary {
+    padding: 18px 38px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.btn-main {
+    background-color: var(--accent-orange);
+    color: white;
+    box-shadow: 0 10px 25px rgba(255, 152, 0, 0.3);
+}
+
+.btn-main:hover {
+    background-color: #f57c00;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 152, 0, 0.4);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+/* --- IMAGEN FLOTANTE (Efecto Marca) --- */
+.hero-image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-ball-floating {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.6));
+    animation: floating 5s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+}
+
+/* --- SECCIÓN DE SERVICIOS (Contenido Extra) --- */
+.info-section {
+    padding: 120px 50px;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    border-radius: 60px 60px 0 0; /* Curva elegante al iniciar sección */
+}
+
+.info-section h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 60px;
+}
+
+.grid-servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-servicio {
+    padding: 40px;
+    background: #f8f9fa;
+    border-radius: 30px;
+    transition: var(--transition);
+    border: 1px solid #eee;
+}
+
+.card-servicio:hover {
+    transform: translateY(-10px);
+    background: #fff;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+/* --- FOOTER PROFESIONAL --- */
+.main-footer {
+    background-color: #000;
+    padding: 100px 50px 30px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 80px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid #222;
+}
+
+.footer-logo h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.footer-links h4 {
+    margin-bottom: 25px;
+    color: var(--primary-color);
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    line-height: 2.5;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 40px;
+    color: #444;
+    font-size: 0.9rem;
+}
+
+/* --- ESTILOS DEL FOOTER --- */
+.main-footer {
+    background-color: #080808; /* Un negro un poco más profundo que el fondo */
+    padding: 80px 50px 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 100px;
+}
+
+.footer-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 100px;
+    padding-bottom: 50px;
+}
+
+.brand-col p {
+    color: var(--text-muted);
+    margin-top: 20px;
+    font-size: 0.95rem;
+    max-width: 300px;
+}
+
+.brand-img-footer {
+    height: 45px; /* Un poco más pequeño que el de la nav */
+    width: auto;
+}
+
+.footer-column h4 {
+    color: var(--text-white);
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
+    padding-left: 5px; /* Efecto sutil de movimiento */
+}
+
+.footer-bottom {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    color: #444;
+    font-size: 0.85rem;
+}
+
+/* Responsivo para celulares */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+    .brand-col p {
+        margin: 20px auto;
+    }
+}
+
+/* Estilo para el acceso de admin en el navbar */
+.admin-access-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    margin-left: 15px;
+    color: var(--text-muted); /* O el color grisáceo que estés usando */
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+/* Estilo actualizado para centrar el icono de admin */
+.admin-access-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    margin-left: 5px; 
+    margin-right: 5px; 
+    color: var(--text-muted);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.admin-access-link:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 188, 212, 0.1);
+    border-color: rgba(0, 188, 212, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Aseguramos que el contenedor de los links tenga un poco de aire */
+.nav-links {
+    display: flex;
+    align-items: center;
+    padding-right: 10px; /* Evita que el último elemento toque el borde */
+}

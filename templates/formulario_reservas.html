@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva tu Cancha - Futball Stars</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/formulario_reservas.css') }}">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="main-card">
+            <div class="side-info">
+                <div class="overlay-content">
+                    <span class="brand-accent"></span>
+                    <h1 class="hero-text">Bienvenido <br> diligencia <br> Tu reserva!</h1>
+                    <div class="profile-circle">
+                        <img src="{{ url_for('static', filename='img/logo_futball.png') }}" alt="Jugador">
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-form">
+                <div class="form-header">
+                    <span class="logo-text">CO.</span>
+                    <p class="login-prompt">¿Quieres ver tus reservas? <a href="#">Haz clic aquí</a></p>
+                </div>
+
+                <div class="form-content">
+                    <h2>Reserva la {{ cancha_id }}</h2>
+                    
+                    <!-- UN SOLO FORMULARIO QUE ENVUELVE TODO -->
+                    <form action="{{ url_for('formulario_reserva', cancha_id=cancha_id) }}" method="POST" class="grid-form">
+                        
+                        <div class="input-group">
+                            <label>Nombre del Equipo</label>
+                            <!-- El name "equipo" coincide con tu app.py -->
+                            <input type="text" name="equipo" placeholder="Ej: Los Galácticos" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Correo de Contacto</label>
+                            <!-- El name "usuario_correo" coincide con tu BD -->
+                            <input type="email" name="usuario_correo" placeholder="tu@email.com" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Fecha del Encuentro</label>
+                            <input type="date" name="fecha" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Hora de Inicio</label>
+                            <input type="time" name="hora" required>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">Acepto los términos y condiciones de uso.</label>
+                        </div>
+
+                        <div class="button-container" style="margin-top: 20px;">
+                            <button type="submit" class="btn-reserva">
+                                RESERVAR AHORA
+                            </button>
+                        </div>
+                    </form>
+
+                    <p class="copyright">@copyright 2026. Futball Stars Ltd.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

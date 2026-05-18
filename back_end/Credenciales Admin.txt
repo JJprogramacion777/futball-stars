@@ -1,0 +1,4 @@
+Credenciales Admin 
+
+User: admin_futball 
+password :FutballAdmin2026!

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Futball Stars</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body class="login-page">
+
+    <a href="/" class="back-link" title="Volver al Inicio">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+    </a>
+
+    <div class="main-container">
+        
+        <header class="form-header">
+            <img src="{{ url_for('static', filename='img/logo_futball.png') }}" alt="Logo" class="logo-img">
+            <h1>Futball Stars</h1>
+        </header>
+
+        <main class="form-body">
+            <h2>Iniciar Sesión</h2>
+            
+            <form action="{{ url_for('login') }}" method="POST">
+                
+                <div class="input-group">
+                    <input type="email" name="correo" placeholder="Correo Electrónico" required>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Contraseña" required>
+                </div>
+
+                <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+
+                <button type="submit" class="btn-main">Iniciar Sesión</button>
+            </form>
+
+            <p class="switch-form">¿No tienes cuenta? <a href="{{ url_for('register') }}">Regístrate</a></p>
+        </main>
+
+    </div>
+
+</body>
+</html>

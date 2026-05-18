@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Clientes - Futball Stars</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Carga exclusiva del CSS de clientes -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_admin/clientes.css', v='2.2') }}">
+</head>
+<body class="clientes-page">
+
+    <div class="clientes-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Futball Stars</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="{{ url_for('dashboard') }}">📊 Dashboard</a></li>
+                    <li class="active"><a href="{{ url_for('clientes') }}">👥 Clientes</a></li>
+                    <li><a href="{{ url_for('reservas') }}">⚽ Canchas</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="clientes-content">
+            <header class="clientes-header">
+                <h1>Gestión de Clientes</h1>
+                <p>Administra, edita y elimina los registros de jugadores.</p>
+                <button class="btn-agregar" onclick="abrirModalAgregar()">➕ Agregar Cliente</button>
+            </header>
+
+            <!-- Tabla de clientes -->
+            <div class="clientes-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre Completo</th>
+                            <th>Correo Electrónico</th>
+                            <th>Fecha de Registro</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cliente in clientes %}
+                        <tr>
+                            <td>#{{ cliente.id }}</td>
+                            <td><strong>{{ cliente.nombre_completo }}</strong></td>
+                            <td>{{ cliente.correo }}</td>
+                            <td>{{ cliente.fecha_registro }}</td>
+                            <td><span class="status-pill">Activo</span></td>
+                            <td class="acciones">
+                                <button class="btn-editar" onclick="abrirModalEditar('{{ cliente.id }}', '{{ cliente.nombre_completo }}', '{{ cliente.correo }}')">✏️ Editar</button>
+                                <button class="btn-eliminar" onclick="abrirModalEliminar('{{ cliente.id }}', '{{ cliente.nombre_completo }}')">🗑️ Eliminar</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modales CRUD -->
+    <div id="modalAgregar" class="modal-overlay">
+        <div class="modal-content">
+            <h3>➕ Agregar Nuevo Cliente</h3>
+            <input type="text" id="nuevoNombre" placeholder="Nombre Completo">
+            <input type="email" id="nuevoCorreo" placeholder="Correo Electrónico">
+            <button class="btn-confirmar" onclick="confirmarAgregar()">Guardar</button>
+            <button class="btn-cancelar" onclick="cerrarModalAgregar()">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="modalEditar" class="modal-overlay">
+        <div class="modal-content">
+            <h3>✏️ Editar Cliente</h3>
+            <input type="text" id="editarNombre">
+            <input type="email" id="editarCorreo">
+            <button class="btn-confirmar" onclick="confirmarEdicion()">Guardar Cambios</button>
+            <button class="btn-cancelar" onclick="cerrarModalEditar()">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="modalEliminar" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-icon">⚠️</div>
+            <h3>¿Eliminar Cliente?</h3>
+            <p>Estás a punto de eliminar a: <strong id="nombreClienteModal"></strong></p>
+            <input type="password" id="adminPass" placeholder="Contraseña de seguridad">
+            <div class="modal-actions">
+                <button class="btn-confirmar" onclick="confirmarEliminacion()">Eliminar Permanentemente</button>
+                <button class="btn-cancelar" onclick="cerrarModalEliminar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts CRUD -->
+    <script>
+        let clienteIdAEliminar = null;
+        let clienteIdAEditar = null;
+
+        function abrirModalEliminar(id, nombre) {
+            clienteIdAEliminar = id;
+            document.getElementById('nombreClienteModal').innerText = nombre;
+            document.getElementById('modalEliminar').style.display = 'flex';
+        }
+        function cerrarModalEliminar() {
+            document.getElementById('modalEliminar').style.display = 'none';
+            document.getElementById('adminPass').value = '';
+        }
+        function confirmarEliminacion() {
+            const pass = document.getElementById('adminPass').value;
+            if (pass === "admin123") {
+                window.location.href = "/eliminar_cliente/" + clienteIdAEliminar;
+            } else {
+                alert("❌ Contraseña incorrecta. Acción denegada.");
+            }
+        }
+
+        function abrirModalAgregar() {
+            document.getElementById('modalAgregar').style.display = 'flex';
+        }
+        function cerrarModalAgregar() {
+            document.getElementById('modalAgregar').style.display = 'none';
+        }
+        function confirmarAgregar() {
+            const nombre = document.getElementById('nuevoNombre').value;
+            const correo = document.getElementById('nuevoCorreo').value;
+            if (nombre && correo) {
+                window.location.href = `/agregar_cliente?nombre=${nombre}&correo=${correo}`;
+            } else {
+                alert("⚠️ Completa todos los campos.");
+            }
+        }
+
+        function abrirModalEditar(id, nombre, correo) {
+            clienteIdAEditar = id;
+            document.getElementById('editarNombre').value = nombre;
+            document.getElementById('editarCorreo').value = correo;
+            document.getElementById('modalEditar').style.display = 'flex';
+        }
+        function cerrarModalEditar() {
+            document.getElementById('modalEditar').style.display = 'none';
+        }
+        function confirmarEdicion() {
+            const nombre = document.getElementById('editarNombre').value;
+            const correo = document.getElementById('editarCorreo').value;
+            window.location.href = `/editar_cliente/${clienteIdAEditar}?nombre=${nombre}&correo=${correo}`;
+        }
+    </script>
+</body>
+</html>

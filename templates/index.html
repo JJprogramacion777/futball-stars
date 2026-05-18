@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futball Stars - Reserva tu Cancha Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-brand">
+                <img src="{{ url_for('static', filename='img/logo_futball.png') }}" alt="Futball Stars Logo" class="brand-img">
+                <span class="brand-text">Futball Stars</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="/">Inicio</a>
+                <a href="/sabermas">¿Cómo Funciona?</a>
+                <a href="#sedes">Sedes</a>
+                <a href="/contacto">Contacto</a>
+                <a href="/login" class="btn-nav">Reservar Ahora</a>
+            </div>
+        </div>
+
+        <div class="nav-links">
+    <a href="{{ url_for('login_admin') }}" class="admin-access-link" title="Acceso Administrativo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <polyline points="16 11 18 13 22 9"></polyline>
+        </svg>
+    </a>
+</div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-container">
+            
+            <div class="hero-text">
+                <p class="tagline">La mejor cancha, la mejor experiencia.</p>
+                <h1>Arma tu partido,<br> reserva en segundos.</h1>
+                <p class="hero-desc">Bienvenido al paraíso de los futbolistas. Canchas sintéticas de última generación, iluminación LED profesional y la forma más rápida de asegurar tu hora de juego.</p>
+                
+                <div class="hero-btns">
+                    <a href="/login" class="btn-main">Iniciar Sesión</a>
+                    <a href="/sabermas" class="btn-secondary">Saber más</a>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper">
+                <img src="{{ url_for('static', filename='img/hero_ball.png') }}" alt="Balón de Fútbol Premium" class="hero-ball-floating">
+            </div>
+
+        </div>
+    </header>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            
+            <div class="footer-column brand-col">
+                <div class="logo-brand">
+                    <img src="{{ url_for('static', filename='img/logo_futball.png') }}" alt="Logo" class="brand-img-footer">
+                    <span class="brand-text">Futball Stars</span>
+                </div>
+                <p>La plataforma definitiva para apasionados del fútbol. Reserva, juega y domina la cancha.</p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Explorar</h4>
+                <ul>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#sedes">Nuestras Sedes</a></li>
+                    <li><a href="#precios">Tarifas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Términos de Uso</a></li>
+                    <li><a href="#">Privacidad</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Futball Stars. Diseñado con pasión por Juan José.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

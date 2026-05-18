@@ -1,0 +1,195 @@
+:root {
+    --primary: #00bcd4;
+    --success: #28a745;
+    --bg: #121212;
+    --card-bg: #1e1e1e;
+    --text: #ffffff;
+}
+
+/* GENERAL */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+}
+
+.user-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.back-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: #fff;
+}
+
+/* CALENDARIO */
+.calendar-wrapper {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    padding: 10px;
+    scrollbar-width: none;
+}
+
+.calendar-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.calendar-days {
+    display: flex;
+    gap: 15px;
+}
+
+.day-item {
+    background: var(--card-bg);
+    min-width: 75px;
+    padding: 15px 10px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.day-item span {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    text-transform: uppercase;
+}
+
+.day-item strong {
+    font-size: 1.3rem;
+    margin: 2px 0;
+}
+
+.day-item small {
+    font-size: 0.75rem;
+    color: var(--primary);
+}
+
+.day-item.active {
+    background: var(--primary);
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0,188,212,0.6);
+}
+
+.day-item.active small {
+    color: #f8efef;
+    font-weight: bold;
+}
+
+/* TARJETAS DE CANCHAS */
+.serie-title {
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.5px;
+}
+
+.serie-title.success {
+    color: var(--success);
+}
+
+.carousel-item {
+    padding: 20px 60px;
+}
+
+.card-cancha {
+    background: linear-gradient(145deg, #1a1a1a, #1e1e1e);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.card-cancha:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(0,188,212,0.4);
+}
+
+.card-cancha img {
+    height: 180px;
+    object-fit: cover;
+}
+
+.badge-disponible {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--success);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.card-body h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.price-tag {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+/* BOTONES PERSONALIZADOS */
+.btn-primary-custom {
+    background: linear-gradient(90deg, #00bcd4, #0097a7);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-success-custom {
+    background: linear-gradient(90deg, #28a745, #218838);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-custom:hover,
+.btn-success-custom:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+/* CONTROLES CARRUSEL */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+    opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    padding: 20px;
+}
+
+/* TITULOS */
+h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}

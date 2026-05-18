@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Administrador - Futball Stars</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_admin.css') }}">
+</head>
+<body class="admin-login-page">
+
+    <a href="/" class="back-link" title="Volver al Inicio">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    </a>
+
+    <div class="main-container">
+        
+        <div class="visual-side">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            
+            <div class="brand-content">
+                <img src="{{ url_for('static', filename='img/logo_futball.png') }}" alt="Logo" class="logo-img-admin">
+                <h1>Futball Stars</h1>
+                <p>Panel de Administración</p>
+                <p class="desc">Acceso restringido para personal autorizado.</p>
+            </div>
+        </div>
+
+        <main class="form-side">
+            
+            <div class="admin-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+            </div>
+
+            <h2>Iniciar Sesión</h2>
+            <p class="subtitle">Ingresa tus credenciales de administrador.</p>
+            
+            <form action="{{ url_for('login_admin') }}" method="POST">
+    <div class="input-group">
+        <input type="text" name="usuario_admin" placeholder="Usuario Administrativo" required>
+    </div>
+    
+    <div class="input-group">
+        <input type="password" name="password_admin" placeholder="Contraseña de Seguridad" required>
+    </div>
+
+    <button type="submit" class="btn-main admin-btn">Entrar al Panel</button>
+</form>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

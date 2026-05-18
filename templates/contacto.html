@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Futball Stars</title>
+    <link rel="stylesheet" href="/static/css/contacto.css">
+    <!-- Iconos (opcional) -->
+    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header>
+        <!-- Mantén tu navegación actual aquí -->
+    </header>
+
+    <section class="contact-container">
+        <div class="contact-info">
+            <h1 class="highlight-text">Ponte en contacto con <br><span>Futball Stars</span></h1>
+            <p>¿Tienes dudas sobre tu reserva o quieres saber más sobre nuestras sedes? Estamos para ayudarte.</p>
+            
+            <div class="info-item">
+                <h3>Soporte Técnico</h3>
+                <p>+57 300 123 4567</p>
+            </div>
+
+            <div class="info-item">
+                <h3>Correo Electrónico</h3>
+                <p>contacto@futballstars.com</p>
+            </div>
+
+            <div class="info-item">
+                <h3>Nuestra Sede</h3>
+                <p>Calle 123 #45-67, Bogotá, Colombia</p>
+            </div>
+        </div>
+
+       <div class="contact-form">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('enviar_contacto') }}" method="POST">
+        <input type="text" name="nombre" placeholder="Tu Nombre Completo" required>
+        <input type="email" name="correo" placeholder="Correo Electrónico" required>
+        <textarea name="mensaje" placeholder="¿En qué podemos ayudarte?" rows="5" required></textarea>
+        <button type="submit" class="btn-primary">Enviar Mensaje</button>
+    </form>
+</div>
+
+
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>Futball <span>Stars</span></h2>
+                <p>La mejor cancha, la mejor experiencia.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Sedes</a></li>
+                    <li><a href="#">Reservar</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <h4>Síguenos</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Futball Stars. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+<script>
+function confirmarEliminacion(event, id) {
+    event.preventDefault();
+    if (confirm("¿Estás seguro de que quieres eliminar este mensaje? Esta acción no se puede deshacer.")) {
+        event.target.closest("form").submit();
+    }
+}
+</script>
